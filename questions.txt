@@ -1,0 +1,28 @@
+1.if registration table have user_id , user_name,user_email,first_name,last_name by itself why we need joining of 
+the two tables meaning profile and registration since profile also have first_name and last_name.
+2. user first name and last name selection from registration age is mentioned in the joining also but those columns are not there 
+3. 1:24 laye user_id grab lemarege lela database call argowale ya gene ayasfelegem
+4. token lay ehulunem menefelegewn ayayezene melake enchelalene video laye ke layem telekowale be token ke tachem degmo id tebelo telekowale: -
+                  let tokenFromJwt = jwt.sign(
+                    { email: user_email, user_id: result[0].userInfo_ID },
+                    "IITadmin@524334",
+                    {
+                      expiresIn: "3d",
+                    }
+                  );
+
+                  let token = tokenFromJwt;
+                  return res.json({
+                    message: "user email and password are correct",
+                    redirect: "/dashbord",
+                    confirmation: "true",
+                    token: token,
+                    userData: result,
+                  });
+                }
+ 5. if else statmentochune bedenbe tsafute confuse endayaregachu lemesale sele auth seyawera be 2:10:39
+    laye try catch weste if(!token){} belo ketsafe behuwal else yeleme yaw by default wede meketelew mehedew
+    kelay yalew kaltemuwala selehone so to be in the safe zone put else...
+
+
+
