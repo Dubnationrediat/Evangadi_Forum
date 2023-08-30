@@ -2,13 +2,17 @@ import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../context/UserContext'
 import { Navigate, useNavigate } from 'react-router-dom'
 import {axiosInstance} from '../../Utility/axios'
-
+import jwt_decode from "jwt-decode";
 
 function Home() {
     const [userData,setUserData]= useContext(UserContext)
     const [fullInfo, setfullInfo] = useState([])
     const [Quesiotns, setQuesiotns] = useState([])
     const navigate = useNavigate()
+
+    let token = localStorage.getItem('token');  
+    let decodedToken =jwt_decode(token) 
+    let user_id_Ftoken = decodedToken.id
 
    let getQuesitons = async ()=>{
     let token = localStorage.getItem('token');  
@@ -74,7 +78,7 @@ function Home() {
                  </div>
                  <div>
              
-                  <a href={`answer/${quesitonInffo.question_id}/${quesitonInffo.user_id}`}>
+                  <a href={`answer/${quesitonInffo.question_id}/${user_id_Ftoken}`}>
                   <button>Answer this question</button>
                   </a>
                  </div>
