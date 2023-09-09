@@ -5,6 +5,8 @@ import Login from './pages/Login/Login.js'
 import Home from './pages/Home/Home.js'
 import Answer from './pages/answer/Answer';
 import Question from './pages/Question/Question';
+import ForGotEmail from './pages/ForGotPasswordForEmail/ForGotEmail';
+import PassWordUpdatePage from './pages/passWordUpdatePage/PassUpdate'
 function App() {  
   return (
     <div className="App">
@@ -17,6 +19,8 @@ function App() {
           <Route path='/home' element={<Home/>}/>
           <Route path='/question' element={<Question/>}/>
           <Route path='/answer/:question_id/:user_id' element={<Answer/>}/>
+          <Route path='/forgotPass' element={<ForGotEmail/>}/>
+          <Route path='/user/updatePassword/:user_id' element={<PassWordUpdatePage/>}/>
         </Routes>
       </div>
      </Router>

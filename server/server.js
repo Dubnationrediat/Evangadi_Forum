@@ -14,6 +14,7 @@ import loginRouter from './Routes/loginR.js'
 import questionRouter from './Routes/questionR.js'
 import answerRouter from './Routes/answerR.js'
 import getAllQRoute from './Routes/getAllQR.js'
+import updateProfile from './Routes/updateProfileR.js'
 // *middlewares
 const app = express()
 app.use((req, res, next) => {
@@ -41,6 +42,7 @@ app.use('/user',loginRouter)
 app.use('/user',questionRouter)
 app.use('/user',answerRouter)
 app.use('/user',getAllQRoute)
+app.use('/user',updateProfile)
 
 
 // *connection  and server listening
