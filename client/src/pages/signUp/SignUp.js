@@ -262,7 +262,7 @@ const SignUp = () => {
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem voluptate officiis beatae nobis pariatur omnis facere accusamus laboriosam hic, adipisci vero reiciendis, recusandae sit ad, eum quisquam! Molestias, ut commodi!</p>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem voluptate officiis beatae nobis pariatur omnis facere accusamus laboriosam hic, adipisci vero reiciendis, recusandae sit ad, eum quisquam! Molestias, ut commodi!</p>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam ipsum, provident minus laudantium esse soluta maiores nostrum nisi sunt perferendis dolorum. Praesentium necessitatibus quia consectetur sunt tempora possimus eveniet voluptates?</p>
-          <button className="btn1">HOW IT WORKS</button>
+
         </div>
       </div>
     );

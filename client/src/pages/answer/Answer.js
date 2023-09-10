@@ -51,8 +51,14 @@ function Answer() {
     getUniqueAnsers()
  }, [])
  
-
-
+if(response){
+  return<div className="forSuccessPa">
+  <h1 className="thankYou">{response.messageToTheFront}</h1>
+  <a className="thankYouAnch" href={response.navigation}>
+    {response.messageToUser}
+  </a>
+</div>
+}else{
   return (
     <>
         <h3 className='title'>Post Answer</h3>
@@ -85,6 +91,9 @@ function Answer() {
         </div>
     </>
   )
+}
+
+
 }
 
 export default Answer
