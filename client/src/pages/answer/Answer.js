@@ -3,12 +3,9 @@ import {useParams } from 'react-router-dom';
 import './Answer.css'
 import { axiosInstance } from '../../Utility/axios';
 import axios from 'axios';
+import Button from 'react-bootstrap/Button';
 import jwt_decode from "jwt-decode";
 function Answer() {
-
-    // let token = localStorage.getItem('token');  
-    // let decodedToken =jwt_decode(token) 
-    // let user_id_answered = decodedToken.id
 
  const {question_id,user_id} = useParams()
  const [answer, setAnswer] = useState({
@@ -16,7 +13,7 @@ function Answer() {
       question_id,
       answer:''
  })
-
+ const [response, setresponse] = useState()
  const [qeustionList, setqeustionList] = useState([])
  let submitAnswer =(e)=>{
     e.preventDefault()
@@ -25,6 +22,8 @@ function Answer() {
         url,
         method:'POST',
         data : answer
+    }).then((data)=>{
+      setresponse(data.data)
     })
  }
  let handleChange = (e)=>{
@@ -52,26 +51,32 @@ function Answer() {
     getUniqueAnsers()
  }, [])
  
- console.log(qeustionList)
+
 
   return (
     <>
-        <div>Post Answer</div>
+        <h3 className='title'>Post Answer</h3>
         <form onSubmit={submitAnswer}>
         <textarea name="answers" id="" maxLength='115' placeholder='your answer here' onChange={handleChange}></textarea>
-        <button>Submit Answer</button>
-        </form>
         <div>
-            <h2>Previous responses for this question </h2>
+
+        <Button type='submit' variant='success'>Submit Answer</Button>
+        </div>
+        </form>
+        <div className='mt-5 anserAkafi container' >
+            <h2 className='title'>Previous responses for this question </h2>
              {
                 qeustionList?.map((answers,i)=>{
                      let listOfAnsers = (
-                              <div key={i}>
-                                    <hr/>
+                              <div key={i} className='d-flex forBackgroundColor m-5'>
+                                <div>
+
                                 <div>{`Answer by : ${answers.user_name}`}</div>
                                 <div>{`user email : ${answers.user_email}`}</div>
+                                </div>
+                                <div className='forAnswer'>
                                  <p>{`forwarded Answer : ${answers.answer}`}</p> 
-                                 <hr/>
+                                </div>
                               </div>
                      )
                      return listOfAnsers

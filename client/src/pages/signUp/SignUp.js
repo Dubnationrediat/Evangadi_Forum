@@ -164,9 +164,9 @@ const SignUp = () => {
       );
   } else {
     return (
-      <div className=" akafi me-3">
-        <div className=" d-md-flex mx-auto py-5 align-items-center sign_page">
-          <div className="form_wrapper col-12 col-md-6 me-md-2 p-5 d-flex flex-column">
+      <div className="d-flex signUpAkafi">
+      
+          <div className="form_wrapper  p-5 d-flex flex-column">
             <p className="p11">EVANGADI STACK OVERFLOW </p>
             <p className="p22 lorem">
               Already have an account?
@@ -195,16 +195,17 @@ const SignUp = () => {
                   autoComplete="new-password"
                   placeholder="Last Name"
                 />
-                <input
+            
+              </div>
+              <input
                   required
-                  className="in11 ms-1"
+                  className="in11 mr-1"
                   name="user_name"
                   onChange={handleChange}
                   type="text"
                   autoComplete="new-password"
                   placeholder="user name"
                 />
-              </div>
               <input
                 required
                 className="in11 mr-1"
@@ -254,10 +255,6 @@ const SignUp = () => {
               <button className="btnSign">Agree and Join</button>
             </form>
             </div>
-      
-
-
-          </div>
         </div>
         <div className="sideNote2 container col-12 col-md-6 ms-md-2 mt-sm-5">
           <p className="forTitle">About</p>

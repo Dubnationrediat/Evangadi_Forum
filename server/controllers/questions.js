@@ -8,7 +8,7 @@ let questionsC = (req,res)=>{
     console.log(err.message)
  }else{
     res.send({
-        messageToTheFront :'question added',
+        messageToTheFront :'question added successfully',
         navigation : '/home',
         messageToUser:'click here for home page',
     })

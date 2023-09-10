@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './ForGotEmail.css'
 import axios from 'axios'
 import {axiosInstance}  from '../../Utility/axios.js'
+import Button from 'react-bootstrap/Button';
 function ForGotEmail() {
 const [email, setEmail] = useState({
   emailFromFront : ""
@@ -50,11 +51,11 @@ const [response, setresponse] = useState()
         )
   }else{
     return (
-      <div>
+      <div className='container akaficontainerQ'>
          < form onSubmit={submitHandler}>
-          <label htmlFor="forgetEmail">please pass your registered email</label>
-          <input type="text" name='forEmail' id='forgetEmail' onChange={handelChange}/>
-          <button>send OTP</button>
+          <h3 className='titleRegister'>Please Pass Your Register Email</h3>
+          <input type="text" placeholder='Your Email Here' name='forEmail' id='forgetEmail' onChange={handelChange}/>
+          <Button type='submit'>Send Update Link</Button>
          </form>
       </div>
     )

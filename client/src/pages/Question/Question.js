@@ -3,6 +3,8 @@ import { UserContext } from '../../context/UserContext'
 import axios from 'axios';
 import { axiosInstance } from '../../Utility/axios';
 import jwt_decode from "jwt-decode";
+import Button from 'react-bootstrap/Button';
+import './Question.css'
 function Question() {
     const [userData,setUserData]= useContext(UserContext);
   let token = localStorage.getItem('token');  
@@ -13,6 +15,7 @@ function Question() {
     user_id: user_id_Ftoken,
     question_description :''
  })
+ const [response, setresponse] = useState()
   let handleSubmit =(e)=>{
     e.preventDefault()
   let  url = `${axiosInstance.defaults.baseURL}/user/questions`
@@ -21,6 +24,8 @@ function Question() {
       method :'POST',
       url,
       data: question
+    }).then((data)=>{
+      setresponse(data.data)
     })
   }
 
@@ -45,19 +50,27 @@ function Question() {
        }
     }
 
+ if(response){
+  return<div className="forSuccessPa">
+  <h1 className="thankYou">{response.messageToTheFront}</h1>
+  <a className="thankYouAnch" href={response.navigation}>
+    {response.messageToUser}
+  </a>
+</div>
+ }
   return (
-    <div>
-           <h3>Post Your Question</h3>
+    <div className='container mt-5 questionAkafi'>
+           <h3 className='title'>Post Your Question</h3>
            <form onSubmit={handleSubmit} action="">
-            <label htmlFor="questions">question</label>
-            <input type="questions"  name="questions" id="questions" onChange={handleChange} />
-            <label htmlFor="questionDescription">Question Details</label>
-           <textarea name='question_description' onChange={handleChange}>
-
+           
+            <input type="questions" placeholder='Question Title'  name="questions" id="questions" onChange={handleChange} />
+           <textarea maxLength='250' placeholder='Question detail' name='question_description' onChange={handleChange}>
            </textarea>
-           <button>Post Question</button>
-           </form>
-         
+           <div>
+
+           <Button type='submit' variant='success'>Post Question</Button>
+           </div>
+           </form>   
     </div>
   )
 }

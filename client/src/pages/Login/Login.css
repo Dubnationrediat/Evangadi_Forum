@@ -31,6 +31,8 @@ form {
 	box-shadow: 17px 17px 34px #d0d0d0;
 	border-radius: 8px;
 	opacity: 0.8;
+	width: 583px;
+
 }
 .p1 {
 	text-align: center;
@@ -126,6 +128,7 @@ input[type] {
 	background-color: whitesmoke;
 	opacity: 0.6;
 	border-radius: 20px;
+	margin-left: 100px !important;
 }
 .sideNote2 img{
 	display: block;

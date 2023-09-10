@@ -120,6 +120,8 @@ form {
 	background: whitesmoke;
 	box-shadow: 17px 17px 34px #d0d0d0;
 	opacity: 0.9;
+	width: 643px;
+	margin-right: 50px;
 }
 
 .showHide {
@@ -243,7 +245,7 @@ select option:nth-child(odd) {
 	}
 
 }
-.akafi{
-	width: 550px;
-	margin: 100px;
+
+.signUpAkafi{
+	margin: 100px 100px;
 }
