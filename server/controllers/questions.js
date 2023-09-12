@@ -16,4 +16,36 @@ let questionsC = (req,res)=>{
     })
 }
 
-export default questionsC
+
+
+let singleQuesion = (req,res)=>{
+    const {user_id} = req.params
+    let singleQ = `SELECT * FROM questions WHERE user_id = '${user_id}'`
+    connectionInfo.query(singleQ,(err,data)=>{
+      if(err){
+         console.log(err.message)
+      }else{
+         res.json({
+            data,
+         })
+      }
+    })
+}
+
+let deleteQuestion  = (req,res)=>{
+   const {question_id}=req.params
+   let deleteQ = `DELETE FROM questions WHERE question_id='${question_id}'`
+   connectionInfo.query(deleteQ,(err,data)=>{
+      if(err){
+         console.log(err.message)
+      }else{
+          res.json({
+         messageToTheFront :'Question Deleted successfully',
+        navigation : '/home',
+        messageToUser:'Click Here For Home Page',
+          })
+      }
+   })
+}
+
+export  {questionsC,singleQuesion,deleteQuestion}

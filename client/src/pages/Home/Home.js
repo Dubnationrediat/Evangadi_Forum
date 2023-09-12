@@ -4,7 +4,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../Utility/axios";
 import jwt_decode from "jwt-decode";
 import Button from 'react-bootstrap/Button';
-
+import axios from "axios";
 import './sytle.css'
 function Home() {
   const [userData, setUserData] = useContext(UserContext);
@@ -13,6 +13,7 @@ function Home() {
   const [search, setsearch] = useState([])
   const [searchApiData, setsearchApiData] = useState([])
   const [filterVal, setfilterVal] = useState('')
+  const [individualQ, setindividualQ] = useState([])
   const navigate = useNavigate();
 
   let token = localStorage.getItem("token");
@@ -28,7 +29,7 @@ function Home() {
     } else {
       try {
         const userRes = await axiosInstance
-          .get("admin/getUserProfile", {
+          .get("/admin/getUserProfile", {
             headers: { token: token },
           })
           .then((data) => {
@@ -42,14 +43,24 @@ function Home() {
             };
             getQustions();
           });
+          const singleQ = await axiosInstance.get(`/user/singleQ/${user_id_Ftoken}`).then(data=>setindividualQ(data.data.data))
+           
+
+
+
+
       } catch (error) {
         console.log(error.message);
       }
     }
   };
+
+
   useEffect(() => {
     getQuesitons();
+   
   }, []);
+
 
   const logout = () => {
     setUserData({
@@ -67,6 +78,16 @@ function Home() {
     }
     setfilterVal(e.target.value)
   }
+
+ //* For Delete
+  function  toDelete(question_id) {
+  let deleteURL =  `${axiosInstance.defaults.baseURL}/user/deleteQ/${question_id}`;
+  axios({
+    method: "DELETE",
+    url: deleteURL,
+  });
+  getQuesitons();
+}
 
   return (
     <div>
@@ -87,6 +108,7 @@ function Home() {
       <div>
         {Quesiotns?.map((quesitonInffo, i) => {
           let questionsShow = (
+            <div>
             <div key={i} className="displayQuestions">
 
               <div className="col-md-3 nameAndEmail">
@@ -115,12 +137,54 @@ function Home() {
                   <Button className="m-4" variant='success'>Answer this question</Button>
                 </a>
               </div>
-             
+           
+                
+            
+            
+
+            </div>
+         
+           
+
             </div>
           );
           return questionsShow;
         })}
       </div>
+       
+      <div>
+        <hr />
+        <h2>Questions Posted By You</h2>
+        {individualQ?.map((quesitonInffo, i) => {
+          let questionsShow = (
+            <div>
+            <div key={i} className="displayQuestions2">
+              <div className="col-md-3">
+                Question : {quesitonInffo.questions}
+              </div>
+              <div className="col-md-3">
+                Question description : {quesitonInffo.question_description}
+              </div>
+              <div>
+                  <Button className="m-4" onClick={()=>toDelete(quesitonInffo.question_id)} variant='danger'>Delete</Button>
+                
+              </div>
+           
+                
+            
+            
+
+            </div>
+         
+           
+
+            </div>
+          );
+          return questionsShow;
+        })}
+      </div>
+       
+
     </div>
   );
 }

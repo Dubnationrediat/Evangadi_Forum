@@ -3,8 +3,6 @@ import connectionInfo from '../databaseConfig.js';
 
 let updatePassword = (req,res)=>{
      const {userPassword,user_id}=req.body
-     console.log(userPassword)
-     console.log(userPassword,user_id)
      let salt = bcrypt.genSaltSync();
      let hashPassword = bcrypt.hashSync(userPassword,salt)
      let updateDB = `UPDATE registrations SET user_password='${hashPassword}' WHERE user_id = '${user_id}'`

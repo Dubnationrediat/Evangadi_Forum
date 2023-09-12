@@ -83,6 +83,12 @@ if(response){
                                 <div className='forAnswer'>
                                  <p>{`forwarded Answer : ${answers.answer}`}</p> 
                                 </div>
+                                <div>
+                                   <Button>Update</Button>
+                                </div>
+                                <div>
+                                    <a href="">Delete Answer</a>
+                                </div>
                               </div>
                      )
                      return listOfAnsers
