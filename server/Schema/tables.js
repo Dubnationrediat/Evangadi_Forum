@@ -32,6 +32,8 @@ export let questions = `CREATE TABLE if not exists questions(
 export let answers = `CREATE TABLE if not exists answers(
   answer_id int auto_increment,
   user_id int not null,
+  user_name text not null,
+  user_email varchar(255) not null,
   question_id INT NOT NULL,
   answer varchar(225) not null,
   time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

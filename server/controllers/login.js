@@ -32,8 +32,7 @@ let login = (req,res)=>{
                                         navigation: "/login",
                                     })
                                 }else{
-                                     const token = jwt.sign({id:result[0].user_id,  display_name:result[0].user_name},process.env.JWT_SECRET,{expiresIn:"1h"})
-                                    //  console.log(result[0].user_id,result[0].user_name)                                 
+                                     const token = jwt.sign({id:result[0].user_id,  display_name:result[0].user_name},process.env.JWT_SECRET,{expiresIn:"4h"})                               
                                      res.send({
                                          token,
                                      })

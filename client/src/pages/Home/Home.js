@@ -6,6 +6,7 @@ import jwt_decode from "jwt-decode";
 import Button from 'react-bootstrap/Button';
 import axios from "axios";
 import './sytle.css'
+
 function Home() {
   const [userData, setUserData] = useContext(UserContext);
   const [fullInfo, setfullInfo] = useState([]);
@@ -38,17 +39,12 @@ function Home() {
               let responseForQuestion = await axiosInstance.get(
                 "/user/getAllQuestions"
               );
-              setQuesiotns(responseForQuestion.data);
+              setQuesiotns(()=>responseForQuestion.data);
               setsearchApiData(()=>responseForQuestion.data)
             };
             getQustions();
           });
           const singleQ = await axiosInstance.get(`/user/singleQ/${user_id_Ftoken}`).then(data=>setindividualQ(data.data.data))
-           
-
-
-
-
       } catch (error) {
         console.log(error.message);
       }
@@ -107,6 +103,17 @@ function Home() {
         </div>
       <div>
         {Quesiotns?.map((quesitonInffo, i) => {
+          let time = quesitonInffo.time
+          let firstRefined = time.replace(/[-:.T]/g, '');
+          let finalRefined = firstRefined.slice(0,-4)
+          let yearStore= finalRefined.slice(0,4);
+ 
+          let dateStore =finalRefined.slice(6,8);
+      
+          let monthStore=finalRefined.slice(4,6)
+      
+          let timeStore = finalRefined.slice(8)
+      
           let questionsShow = (
             <div>
             <div key={i} className="displayQuestions">
@@ -121,7 +128,7 @@ function Home() {
 
                 </div>
                 <div>
-                  Date : {quesitonInffo.time}
+                  Date : {`${dateStore}/${monthStore}/${yearStore}`}
                 </div>
               </div>
               <div className="col-md-3">
@@ -134,18 +141,10 @@ function Home() {
                 <a
                   href={`answer/${quesitonInffo.question_id}/${user_id_Ftoken}`}
                 >
-                  <Button className="m-4" variant='success'>Answer this question</Button>
+                  <Button className="m-4" variant='success'>Answer This Question</Button>
                 </a>
               </div>
-           
-                
-            
-            
-
             </div>
-         
-           
-
             </div>
           );
           return questionsShow;

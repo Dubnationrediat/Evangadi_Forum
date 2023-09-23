@@ -14,4 +14,11 @@
     height: 100px;
     border-radius: 15px;
     color: white;
+    max-width: 100%;
+
+}
+.buttonAkafi{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }

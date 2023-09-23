@@ -32,7 +32,7 @@ let register = (req,res)=>{
                       const salt = bcrypt.genSaltSync()
                      let  hashPassword = bcrypt.hashSync(user_password,salt)
                         let registerQuery = `INSERT INTO registrations (user_first_name,user_last_name,user_name, user_email, user_password,user_role,user_OTP)VALUES(?)`
-                        let value = [user_first_name,user_last_name,user_name, user_email, hashPassword,0,0]
+                        let value = [user_first_name,user_letast_name,user_name, user_email, hashPassword,0,0]
                         connectionInfo.query(registerQuery,[value],(err,data,field)=>{
                             if(err){
                                 console.log(err.message)
